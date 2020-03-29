@@ -1,4 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+char * last = NULL;
+
+char* str_tok(char * inp, const char * delim){
+    if(inp == NULL){
+        //try to continue from last.
+        inp = last;
+    }
+    int len;
+    for(len = 0; inp[len] != '\0' && inp[len] != *delim; len++);//search until we reach end of array or the delim character
+    last = inp + len;
+    //construct new pointer/array
+    char * returned = calloc(sizeof(char), len + 1); //+1 as we need the \0 operator
+    for(int i = 0; i < len; i++){
+        returned[i] = inp[i]; 
+    }
+    returned[len] = '\0';
+    return returned;
+}
 
 int main(){
     // initialize array string
@@ -21,21 +41,3 @@ int main(){
     return 0;
 }//end main
 
-char * last = NULL;
-
-char* str_tok(char * inp, const char * delim){
-    if(inp == NULL){
-        //try to continue from last.
-        inp = last;
-    }
-    int len;
-    for(len = 0; inp[len] != '\0' && inp[len] != *delim; len++); //search until we reach end of array or the delim character
-    last = inp + len;
-    //construct new pointer/array
-    char * returned = calloc(sizeof(char), len + 1); //+1 as we need the \0 operator
-    for(int i = 0; i < len; i++){
-        returned[i] = inp[i]; 
-    }
-    returned[len] = '\0';
-    return returned;
-}
