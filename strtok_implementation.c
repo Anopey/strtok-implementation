@@ -3,7 +3,7 @@
 
 char * last = NULL;
 
-char* str_tok(char * inp, const char * delim){
+char* str_tok(const char * inp, const char * delim){
     if(inp == NULL){
         //try to continue from last.
         inp = last;
