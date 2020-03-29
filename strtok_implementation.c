@@ -8,9 +8,24 @@ char* str_tok(char * inp, const char * delim){
         //try to continue from last.
         inp = last;
     }
-    int len;
-    for(len = 0; inp[len] != '\0' && inp[len] != *delim; len++);//search until we reach end of array or the delim character
-    last = inp + len;
+    if(inp == NULL){
+        //last was null too ;_;
+        return NULL;
+    }
+    int len = 0;
+    last = inp;
+    while(inp != NULL){
+        last++;
+        if(inp[len] == *delim){
+            break;
+        }
+        if(inp[len] == '\0'){
+            //reached end of char array. 
+            last = NULL;
+            break;
+        }
+        len++;
+    }
     //construct new pointer/array
     char * returned = calloc(sizeof(char), len + 1); //+1 as we need the \0 operator
     for(int i = 0; i < len; i++){
