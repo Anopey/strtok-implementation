@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 char * last = NULL;
 
@@ -17,7 +18,25 @@ char* str_tok(const char * inp, const char * delim){
     while(inp != NULL){
         last++;
         if(inp[len] == *delim){
-            break;
+            bool y = true;
+            int j = 0;
+            for(int i = len; delim[i - len] != '\0'; i++)//check if this really is delim.
+            {
+                if(inp[i] != delim[i - len] || inp[i] == '\0'){
+                    y = false;
+                    len += i - len;
+                    last += i - len;
+                    break;
+                }
+                j++;
+            }
+            if(y)
+            {
+                //we really have reached the delim!
+                len+= j;
+                last += j;
+                break;
+            }
         }
         if(inp[len] == '\0'){
             //reached end of char array. 
