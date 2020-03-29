@@ -25,7 +25,7 @@ char* str_tok(const char * inp, const char * delim){
                 if(inp[i] != delim[i - len] || inp[i] == '\0'){
                     y = false;
                     len += i - len;
-                    last += i - len;
+                    last += i - len - 1;
                     break;
                 }
                 j++;
@@ -34,7 +34,7 @@ char* str_tok(const char * inp, const char * delim){
             {
                 //we really have reached the delim!
                 len+= j;
-                last += j;
+                last += j - 1;
                 break;
             }
         }
