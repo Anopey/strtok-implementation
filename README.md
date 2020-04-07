@@ -1,2 +1,2 @@
 # strtok-implementation
- I got bored so I decided to play around with some C
+A strtok-implementation for the sake of exercise and learning C
